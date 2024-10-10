@@ -1,4 +1,4 @@
-# AulasFlutter
+# Aulas Flutter - PUC Minas
 
 ## Repositório das Aulas de Flutter
 
