@@ -23,22 +23,24 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   List<Map> listaProdutos = [];
-  BancoSQLite bancoSQLite = BancoSQLite();
+  late BancoSQLite bancoSQLite;
 
   @override
-  void initState() {
+  void initState()  {
     super.initState();
+
+
     _initializeDatabase();
   }
 
   Future<void> _initializeDatabase() async {
+    bancoSQLite = BancoSQLite();
     await bancoSQLite.open();
     await recuperaProdutos();
   }
 
   Future<void> recuperaProdutos() async {
     List<Map<dynamic, dynamic>> recuperaProdutos = await bancoSQLite.db.rawQuery('SELECT * FROM produtos');
-
     setState(() {
       listaProdutos = recuperaProdutos;
     });
@@ -46,6 +48,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+  recuperaProdutos();
     return Scaffold(
       appBar: AppBar(
         title: Text("Produtos"),

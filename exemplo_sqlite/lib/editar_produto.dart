@@ -30,7 +30,8 @@ class _EditStudent extends State<EditarProduto>{
             nome.text = data["nome"];
             codigo.text = data["codigo"].toString();
             valor.text = data["valor"];
-            setState(() {});
+            // Navigator.pop(context);
+            // //setState(() {});
         }else{
            print("Nenhum produto com código: " + widget.codigo.toString());
         }
@@ -72,9 +73,8 @@ class _EditStudent extends State<EditarProduto>{
                    ElevatedButton(onPressed: (){
                          bancoSQLite.db.rawInsert("UPDATE produtos SET nome = ?, codigo = ?, valor = ? WHERE codigo = ?",
                          [nome.text, codigo.text, valor.text, widget.codigo]);
-
                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Produto Atualizado")));
-
+                         Navigator.pop(context);
                    }, child: Text("Atualizar dados do Produto")),
                ],),
             )
