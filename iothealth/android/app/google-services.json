@@ -1,0 +1,83 @@
+{
+  "project_info": {
+    "project_number": "151030417665",
+    "firebase_url": "https://my-iot-health-default-rtdb.firebaseio.com",
+    "project_id": "my-iot-health",
+    "storage_bucket": "my-iot-health.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:151030417665:android:a58590e1d9350e25b5b300",
+        "android_client_info": {
+          "package_name": "br.pucminas.iothealth.iothealth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "151030417665-8kovaeqaofv30jj0kj94lamtlbuurijh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-A_ihrejX_sLbiA7qReZsBsWISRnEBIY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "151030417665-8kovaeqaofv30jj0kj94lamtlbuurijh.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "151030417665-m91i0q878mhvp6jn0fq4fp44up7omlrv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "br.pucminas.iothealth.iothealth"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:151030417665:android:d2ff54be2ff384a5b5b300",
+        "android_client_info": {
+          "package_name": "com.example.iothealth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "151030417665-8kovaeqaofv30jj0kj94lamtlbuurijh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-A_ihrejX_sLbiA7qReZsBsWISRnEBIY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "151030417665-8kovaeqaofv30jj0kj94lamtlbuurijh.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "151030417665-m91i0q878mhvp6jn0fq4fp44up7omlrv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "br.pucminas.iothealth.iothealth"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
