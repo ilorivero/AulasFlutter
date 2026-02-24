@@ -1,22 +1,22 @@
 # dados_preferencia_app
 
-Um aplicativo Flutter para demonstrar persistência de dados simples com **SharedPreferences** (API legada).
+Aplicativo Flutter para demonstrar persistência de dados com **SharedPreferences** (API legada).
 
 ## 📖 Descrição
 
-Este projeto mostra como salvar, recuperar e remover pares chave-valor de forma persistente utilizando o pacote `shared_preferences`. É ideal para armazenar preferências de usuário, configurações simples e pequenas quantidades de dados.
+Mostra como salvar, recuperar e remover pares chave-valor de forma persistente usando o pacote `shared_preferences` com a API clássica baseada em `getInstance()`.
 
 ## 🚀 Funcionalidades
 
-- **Salvar**: Persiste um texto digitado pelo usuário com a chave `"nome"`
-- **Recuperar**: Lê e exibe o texto salvo anteriormente
-- **Remover**: Apaga o dado associado à chave `"nome"`
+- **Salvar**: persiste texto digitado com a chave `"nome"`
+- **Recuperar**: lê e exibe o texto salvo
+- **Remover**: apaga o dado associado à chave
 
 ## 📦 Pacotes Utilizados
 
 | Pacote | Versão | Uso |
 |--------|--------|-----|
-| `shared_preferences` | ^2.3.0 | Armazenamento de dados simples no dispositivo |
+| `shared_preferences` | ^2.3.2 | Armazenamento local de dados simples |
 
 ## 🏃 Como Executar
 
@@ -31,15 +31,13 @@ flutter run
 ```
 lib/
 ├── main.dart   # Ponto de entrada do app
-└── Home.dart   # Tela com operações de SharedPreferences
+└── Home.dart   # Tela com as operações de SharedPreferences
 ```
 
 ## 📝 Conceitos Demonstrados
 
-- Uso de `SharedPreferences.getInstance()` (API síncrona com cache)
-- Salvar string com `prefs.setString(chave, valor)`
-- Recuperar string com `prefs.getString(chave)`
-- Remover dado com `prefs.remove(chave)`
-- Atualização de UI com `setState`
+- `SharedPreferences.getInstance()` (API com cache)
+- `prefs.setString` / `prefs.getString` / `prefs.remove`
+- `setState` para atualizar a UI após operações assíncronas
 
-> **Nota:** Veja também o projeto [`shared_preferences`](../shared_preferences) que demonstra a API moderna `SharedPreferencesAsync`.
+> Compare com [`shared_preferences`](../shared_preferences) que usa a API moderna `SharedPreferencesAsync`.

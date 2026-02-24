@@ -1,27 +1,24 @@
 # exemplolistviewcrud
 
-Aplicativo Flutter com **ListView**, CRUD de produtos via SQLite, e espaço reservado para leitura de código de barras.
+Aplicativo Flutter com **ListView** e CRUD de produtos via SQLite, separado em múltiplas telas.
 
 ## 📖 Descrição
 
-Este projeto demonstra o uso de `ListView` em combinação com operações de banco de dados SQLite. Foi originalmente desenvolvido com suporte ao leitor de código de barras (`flutter_barcode_scanner`), porém esse pacote foi descontinuado e a funcionalidade de escaneamento foi desabilitada.
+Demonstra o uso de `ListView` em conjunto com operações de banco de dados SQLite, com telas separadas para listagem, adição e edição de produtos.
 
 ## 🚀 Funcionalidades
 
-- **Listar produtos**: Exibe todos os produtos em cards usando ListView
-- **Adicionar produto**: Tela com campos para nome, código e valor
-- **Editar produto**: Tela para atualização dos dados do produto
-- **Excluir produto**: Remove o produto com feedback de SnackBar
-- *(Desabilitado)* **Leitor de código de barras**: Reservado para uso futuro
+- **Listar produtos**: lista com `ListTile` e botões de ação
+- **Adicionar produto**: formulário com nome, código e valor
+- **Editar produto**: atualização dos dados do produto
+- **Excluir produto**: remoção com SnackBar de confirmação
 
 ## 📦 Pacotes Utilizados
 
 | Pacote | Versão | Uso |
 |--------|--------|-----|
 | `sqflite` | ^2.4.0 | Banco de dados SQLite local |
-| `path` | ^1.9.0 | Construção de caminhos de arquivo |
-
-> ⚠️ O pacote `flutter_barcode_scanner` foi **removido** por estar descontinuado. A funcionalidade de leitura de código de barras pode ser implementada com uma alternativa como `mobile_scanner`.
+| `path` | ^1.9.0 | Construção do caminho do arquivo do banco |
 
 ## 🏃 Como Executar
 
@@ -35,15 +32,17 @@ flutter run
 
 ```
 lib/
-├── main.dart              # Tela principal com lista de produtos
-├── db.dart                # Classe BancoSQLite
+├── main.dart               # Ponto de entrada do app
+├── db.dart                 # Classe BancoSQLite (acesso a dados)
+├── listar_produtos.dart    # Tela de listagem com cards e ações
 ├── adicionar_produtos.dart # Tela para adicionar produto
-└── editar_produto.dart    # Tela para editar produto
+└── editar_produto.dart     # Tela para editar produto
 ```
 
 ## 📝 Conceitos Demonstrados
 
-- ListView dinâmica com dados do SQLite
-- Uso de `Future.delayed` para aguardar abertura do banco
-- Estrutura CRUD completa em múltiplos arquivos
-- Cards com ações de editar e excluir
+- `ListView` dinâmica com dados do SQLite
+- `Future.delayed` para aguardar abertura do banco
+- Separação de telas em múltiplos arquivos
+- Cards com `ListTile`, ícones de editar e excluir
+- `SnackBar` para feedback ao usuário

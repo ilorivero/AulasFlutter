@@ -1,24 +1,24 @@
 # exemplo_sqlite
 
-Aplicativo Flutter com CRUD completo de produtos utilizando **SQLite**, com telas separadas para adicionar e editar registros.
+Aplicativo Flutter com **CRUD completo de produtos** em SQLite, organizado em múltiplas telas e com classe de acesso a dados dedicada.
 
 ## 📖 Descrição
 
-Este projeto demonstra a arquitetura mais organizada para trabalhar com SQLite, separando a lógica de banco de dados em uma classe dedicada (`BancoSQLite`) e as telas em arquivos separados.
+Demonstra a arquitetura mais organizada para SQLite, separando a lógica de banco de dados em `BancoSQLite` e cada tela em seu próprio arquivo. Inclui tela dedicada para listagem, adição e edição de produtos.
 
 ## 🚀 Funcionalidades
 
-- **Listar produtos**: Exibe todos os produtos em cards com ícones de ação
-- **Adicionar produto**: Tela dedicada para inserção de nome, código e valor
-- **Editar produto**: Pré-preenche os campos com os dados existentes para atualização
-- **Excluir produto**: Remove o produto da lista com feedback visual (SnackBar)
+- **Listar produtos**: tela própria com cards e ações de editar/excluir
+- **Adicionar produto**: formulário com nome, código e valor
+- **Editar produto**: pré-preenche campos com dados existentes
+- **Excluir produto**: remoção com feedback visual (SnackBar)
 
 ## 📦 Pacotes Utilizados
 
 | Pacote | Versão | Uso |
 |--------|--------|-----|
 | `sqflite` | ^2.4.0 | Banco de dados SQLite local |
-| `path` | ^1.9.0 | Construção de caminhos de arquivo |
+| `path` | ^1.9.0 | Construção do caminho do arquivo do banco |
 
 ## 🏃 Como Executar
 
@@ -32,16 +32,17 @@ flutter run
 
 ```
 lib/
-├── main.dart              # Tela principal com lista de produtos
-├── db.dart                # Classe BancoSQLite (DAL)
+├── main.dart               # Ponto de entrada do app
+├── db.dart                 # Classe BancoSQLite (acesso a dados)
+├── listar_produtos.dart    # Tela de listagem com cards
 ├── adicionar_produtos.dart # Tela para adicionar produto
-└── editar_produto.dart    # Tela para editar produto existente
+└── editar_produto.dart     # Tela para editar produto existente
 ```
 
 ## 📝 Conceitos Demonstrados
 
-- Separação de responsabilidades: DAL (Data Access Layer) em `db.dart`
+- Padrão DAL (Data Access Layer) com `BancoSQLite`
 - `rawQuery`, `rawInsert`, `rawDelete` para SQL personalizado
-- Navegação entre telas com `Navigator.push` e `Navigator.pop`
-- Inicialização assíncrona com `initState` e `Future<void>`
-- Feedback visual com `SnackBar`
+- `initState` assíncrono para pré-carregar dados
+- `Navigator.push` / `Navigator.pop` para fluxo entre telas
+- `SnackBar` para feedback ao usuário

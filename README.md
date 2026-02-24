@@ -1,70 +1,61 @@
 # AulasFlutter
 
-Repositório de projetos Flutter desenvolvidos para as aulas de **Programação para Dispositivos Móveis**. Cada pasta contém um projeto independente que demonstra um conjunto específico de conceitos do Flutter e do Dart.
+Repositório de projetos Flutter desenvolvidos para as aulas de **Programação para Dispositivos Móveis**. Cada pasta é um projeto independente que demonstra um conjunto específico de conceitos do Flutter e do Dart.
 
 ## 📁 Projetos
 
 ### 🗄️ Banco de Dados
 
-| Projeto | Descrição | Pacote Principal |
-|---------|-----------|-----------------|
-| [banco_dados_app](./banco_dados_app) | Operações CRUD básicas em SQLite com SQL manual | `sqflite` |
-| [exemplo_sqlite](./exemplo_sqlite) | CRUD completo de produtos com telas separadas e classe DAL | `sqflite` |
-| [exemplolistviewcrud](./exemplolistviewcrud) | ListView com CRUD via SQLite e suporte a código de barras (desabilitado) | `sqflite` |
+| Projeto | Descrição | Pacotes |
+|---------|-----------|---------|
+| [banco_dados_app](./banco_dados_app) | CRUD básico em SQLite com SQL manual em arquivo único | `sqflite`, `path` |
+| [exemplo_sqlite](./exemplo_sqlite) | CRUD completo de produtos com telas separadas e classe DAL | `sqflite`, `path` |
+| [exemplolistviewcrud](./exemplolistviewcrud) | ListView com CRUD via SQLite organizado em múltiplas telas | `sqflite`, `path` |
 
-### 💾 Persistência de Dados
+### 💾 Persistência de Preferências
 
-| Projeto | Descrição | Pacote Principal |
-|---------|-----------|-----------------|
-| [dados_preferencia_app](./dados_preferencia_app) | SharedPreferences legada para salvar/recuperar/remover dados | `shared_preferences` |
-| [shared_preferences](./shared_preferences) | API moderna `SharedPreferencesAsync` para persistência local | `shared_preferences` |
+| Projeto | Descrição | Pacotes |
+|---------|-----------|---------|
+| [dados_preferencia_app](./dados_preferencia_app) | SharedPreferences com a API clássica (`getInstance`) | `shared_preferences` |
+| [shared_preferences](./shared_preferences) | SharedPreferences com a API moderna (`SharedPreferencesAsync`) | `shared_preferences` |
 
-### 🎨 Interface e Widgets
+### 🎨 Interface e Navegação
 
 | Projeto | Descrição | Conceitos |
 |---------|-----------|-----------|
-| [interface_app1](./interface_app1/interface_app1) | Widgets básicos: imagens, botões, textos | `Image.asset`, `ElevatedButton`, `Text` |
-| [interface_app2](./interface_app2/interface_app2) | Widgets de entrada: TextField, CheckBox, RadioButton, Slider, Switch | Inputs, `setState` |
-| [interface_app3](./interface_app3/interface_app3) | Navegação entre telas com Navigator | `Navigator.push`, `Navigator.pop` |
-
----
-
-## ⚠️ Projetos Incompletos
-
-As seguintes pastas existem no repositório mas **não contêm projetos Flutter completos**:
-
-- **`navegacao/`** — Pasta com estrutura incompleta, sem `pubspec.yaml` nem código principal. Possivelmente um rascunho inicial de estudos de navegação.
-- **`iothealth/`** — Pasta com conteúdo mínimo, provavelmente um projeto de IoT para saúde que ainda não foi desenvolvido.
+| [interface_app1](./interface_app1) | Imagens, botões estilizados e textos formatados | `Image.asset`, `ElevatedButton` |
+| [interface_app2](./interface_app2) | Menu unificado com TextField, CheckBox, RadioButton, Slider e Switch | Inputs, `GridView`, `setState` |
+| [interface_app3](./interface_app3) | Navegação entre duas telas com Navigator | `Navigator.push`, `Navigator.pop` |
 
 ---
 
 ## 🛠️ Requisitos
 
-- **Flutter SDK**: >= 3.x (recomenda-se a versão estável mais recente)
-- **Dart SDK**: >= 2.12.0 < 4.0.0
-- **Android Studio** ou **VS Code** com extensão Flutter
+- **Flutter SDK** `>=3.5.0 <4.0.0` — [instalar Flutter](https://docs.flutter.dev/get-started/install)
+- **Dart SDK** `>=3.5.0 <4.0.0` (incluído no Flutter)
+- **Android Studio** ou **VS Code** com extensão Flutter/Dart
 
-## 🏃 Como executar um projeto
+## 🏃 Como executar qualquer projeto
 
-1. Navegue até a pasta do projeto desejado:
-   ```bash
-   cd nome_do_projeto
-   ```
-2. Instale as dependências:
-   ```bash
-   flutter pub get
-   ```
-3. Execute o aplicativo:
-   ```bash
-   flutter run
-   ```
+```bash
+# Navegue até a pasta do projeto desejado
+cd nome_do_projeto
+
+# Instale as dependências
+flutter pub get
+
+# Execute
+flutter run
+```
 
 ## 📚 Tópicos Abordados
 
-- ✅ Widgets Stateless e Stateful
-- ✅ Banco de dados local com SQLite (`sqflite`)
-- ✅ Persistência de dados com `SharedPreferences` e `SharedPreferencesAsync`
-- ✅ Widgets de entrada: `TextField`, `Checkbox`, `Radio`, `Slider`, `Switch`
-- ✅ Navegação entre telas com `Navigator`
-- ✅ Documentação inline em Dart (doc comments `///`)
-- ✅ Null Safety (Dart 3 compatível)
+| Tópico | Projetos |
+|--------|---------|
+| Banco de dados SQLite | `banco_dados_app`, `exemplo_sqlite`, `exemplolistviewcrud` |
+| Persistência local | `dados_preferencia_app`, `shared_preferences` |
+| Widgets básicos (Text, Button, Image) | `interface_app1` |
+| Widgets de entrada (TextField, CheckBox, Radio, Slider, Switch) | `interface_app2` |
+| Navegação entre telas | `interface_app3` |
+| Documentação inline Dart (`///`) | Todos os projetos |
+| Null Safety (Dart 3) | Todos os projetos |

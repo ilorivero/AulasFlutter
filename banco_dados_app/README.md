@@ -1,25 +1,25 @@
 # banco_dados_app
 
-Um aplicativo Flutter para demonstrar operações com banco de dados **SQLite** usando o pacote `sqflite`.
+Aplicativo Flutter para demonstrar operações básicas de banco de dados **SQLite** com `sqflite`.
 
 ## 📖 Descrição
 
-Este projeto é uma introdução ao armazenamento local de dados relacionais no Flutter. Ele demonstra as quatro operações fundamentais de banco de dados — **CRUD (Create, Read, Update, Delete)** — em uma tabela de usuários.
+Introdução ao armazenamento local de dados relacionais no Flutter. Demonstra as quatro operações fundamentais de banco — **CRUD** — em uma tabela de usuários, tudo em um único arquivo `main.dart`.
 
 ## 🚀 Funcionalidades
 
-- **Criar**: Inserir um novo usuário (nome + idade) no banco local
-- **Listar todos**: Buscar e exibir todos os usuários cadastrados
-- **Listar um**: Buscar um usuário específico pelo `id`
-- **Atualizar**: Modificar o nome e a idade de um usuário pelo `id`
-- **Excluir**: Remover um usuário com base em nome e idade
+- **Criar**: inserir usuário (nome + idade)
+- **Listar todos**: buscar todos os usuários cadastrados
+- **Listar um**: buscar usuário pelo `id`
+- **Atualizar**: modificar nome e idade pelo `id`
+- **Excluir**: remover usuário por nome e idade
 
 ## 📦 Pacotes Utilizados
 
 | Pacote | Versão | Uso |
 |--------|--------|-----|
 | `sqflite` | ^2.4.0 | Banco de dados SQLite local |
-| `path` | ^1.9.0 | Montar o caminho do arquivo de banco de dados |
+| `path` | ^1.9.0 | Montagem do caminho do arquivo de banco |
 
 ## 🏃 Como Executar
 
@@ -33,12 +33,11 @@ flutter run
 
 ```
 lib/
-└── main.dart   # Tela principal com operações CRUD de usuários
+└── main.dart   # Tela principal com todas as operações CRUD
 ```
 
 ## 📝 Conceitos Demonstrados
 
-- Criação de banco de dados com `openDatabase`
-- Operações SQL com `rawQuery`, `insert`, `update`, `delete`
-- Uso de placeholders (`?`) para evitar SQL Injection
-- Gerenciamento de caminhos com o pacote `path`
+- Criação do banco com `openDatabase` e callback `onCreate`
+- `rawQuery`, `insert`, `update`, `delete` com placeholders `?`
+- `path.join` para construir o caminho do banco de dados
