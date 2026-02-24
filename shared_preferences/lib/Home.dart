@@ -1,34 +1,55 @@
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shared_preferences/shared_preferences.dart'; // Pacote para persistência de dados
 import 'package:flutter/material.dart';
 
+/// Tela principal que demonstra o uso da API moderna [SharedPreferencesAsync]
+/// para persistência de dados simples de forma local.
+///
+/// Note que [SharedPreferences] foi marcado como depreciado em versões recentes.
+/// Esta implementação usa [SharedPreferencesAsync], que é a API recomendada.
+/// Existe também o [SharedPreferencesCached] para leituras sem await.
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
 }
 
+/// Estado associado ao widget [Home].
 class _HomeState extends State<Home> {
+  /// Texto exibido na tela com o valor recuperado do armazenamento local.
   String _textoSalvo = "Nada salvo!";
-  TextEditingController _textController = TextEditingController();
-  //o método será assincrono, ou seja, ao salvar os dados não necessariamente serão salvos de forma instantânea
-  //executado de forma paralela
-  _salvarDados() async{
+
+  /// Controlador para capturar o texto digitado pelo usuário.
+  final TextEditingController _textController = TextEditingController();
+
+  /// Salva o texto digitado no armazenamento local usando [SharedPreferencesAsync].
+  ///
+  /// O método é assíncrono pois o [SharedPreferencesAsync] não usa cache interno;
+  /// cada operação vai diretamente ao armazenamento persistente.
+  _salvarDados() async {
     String valorDigitado = _textController.text;
-    // Aqui vamos usar SharedPreferencesAsync. O original (SharedPreferences) foi Deprecated
-    // Ainda temos o SharedPreferencesCached, mas não vai ser abordado na disciplina
-    final SharedPreferencesAsync prefs = await SharedPreferencesAsync();
-    await prefs.setString("nome", valorDigitado); // a chave será usada para recuperar dados
+    // Cria uma instância de SharedPreferencesAsync (API moderna, sem cache).
+    final SharedPreferencesAsync prefs = SharedPreferencesAsync();
+    // Salva o texto com a chave "nome". A chave é usada para recuperar o valor.
+    await prefs.setString("nome", valorDigitado);
     print("Operação salvar: $valorDigitado");
   }
-  _recuperarDados() async{
-    final SharedPreferencesAsync prefs = await SharedPreferencesAsync();
+
+  /// Recupera o texto salvo anteriormente e atualiza a interface do usuário.
+  ///
+  /// Usa o operador '??' para fornecer um valor padrão caso não haja dado salvo.
+  _recuperarDados() async {
+    final SharedPreferencesAsync prefs = SharedPreferencesAsync();
+    // getString pode retornar null se a chave não existir.
     final String? _textoRecuperado = await prefs.getString("nome");
-    setState(()  {
+    // setState redesenha o widget com o novo valor da variável _textoSalvo.
+    setState(() {
       _textoSalvo = _textoRecuperado ?? "Sem valor";
     });
     print("Operação recuperar: $_textoSalvo");
   }
-  _removerDados() async{
-    final SharedPreferencesAsync prefs = await SharedPreferencesAsync();
+
+  /// Remove o dado associado à chave "nome" do armazenamento local.
+  _removerDados() async {
+    final SharedPreferencesAsync prefs = SharedPreferencesAsync();
     prefs.remove("nome");
     print("Operação remover");
   }
@@ -36,53 +57,50 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Persistência de dados"),
-      ),
+      appBar: AppBar(title: const Text("Persistência de dados")),
       body: Container(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Column(
           children: <Widget>[
+            // Campo de texto para o usuário digitar o nome a ser salvo.
             TextField(
-              decoration: InputDecoration(
-                labelText: "Digite o nome: ",
-              ),
+              decoration: const InputDecoration(labelText: "Digite o nome: "),
               controller: _textController,
             ),
-            SizedBox(height: 16,),
+            const SizedBox(height: 16),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
+                // Botão para acionar a operação de salvar.
                 ElevatedButton(
-                  child: Text("Salvar"),
                   onPressed: _salvarDados,
+                  child: const Text("Salvar"),
                 ),
-                SizedBox(width: 16,),
+                const SizedBox(width: 16),
+                // Botão para acionar a operação de recuperar.
                 ElevatedButton(
-                  child: Text("Recuperar"),
                   onPressed: _recuperarDados,
+                  child: const Text("Recuperar"),
                 ),
-                SizedBox(width: 16,),
+                const SizedBox(width: 16),
+                // Botão para acionar a operação de remover.
                 ElevatedButton(
-                  child: Text("Remover"),
                   onPressed: _removerDados,
+                  child: const Text("Remover"),
                 ),
               ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.only(top: 100),
-                ),
-                Text(_textoSalvo,
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.red,
-                  ),
+                const Padding(padding: EdgeInsets.only(top: 100)),
+                // Exibe o valor recuperado do armazenamento local.
+                Text(
+                  _textoSalvo,
+                  style: const TextStyle(fontSize: 20, color: Colors.red),
                 ),
               ],
-            )
+            ),
           ],
         ),
       ),

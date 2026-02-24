@@ -1,75 +1,99 @@
 import 'package:flutter/material.dart';
-import 'db.dart';
+import 'db.dart'; // Acesso ao banco de dados SQLite
 
-class AdicionarProduto extends StatefulWidget{
+/// Tela para adicionar um novo produto ao banco de dados.
+///
+/// Exibe um formulário com campos para nome, código e valor do produto.
+class AdicionarProduto extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-      return _AdicionarProduto();
+    return _AdicionarProduto();
   }
 }
 
-class _AdicionarProduto extends State<AdicionarProduto>{
+/// Estado associado ao widget [AdicionarProduto].
+class _AdicionarProduto extends State<AdicionarProduto> {
+  /// Controlador para o campo de texto do nome do produto.
+  final TextEditingController produto_nome = TextEditingController();
 
-  TextEditingController produto_nome = TextEditingController();
-  TextEditingController produto_codigo = TextEditingController();
-  TextEditingController produto_valor = TextEditingController();
+  /// Controlador para o campo de texto do código do produto.
+  final TextEditingController produto_codigo = TextEditingController();
 
+  /// Controlador para o campo de texto do valor do produto.
+  final TextEditingController produto_valor = TextEditingController();
 
-  BancoSQLite bancoSQLite = new BancoSQLite();
+  /// Instância da classe de acesso ao banco de dados.
+  BancoSQLite bancoSQLite = BancoSQLite();
 
   @override
   void initState() {
+    // Abre o banco de dados ao inicializar a tela.
     bancoSQLite.open();
     super.initState();
   }
 
-
   @override
   Widget build(BuildContext context) {
-       return Scaffold(
-            appBar: AppBar(
-              title: const Text("Adicionar Produto"),
+    return Scaffold(
+      appBar: AppBar(title: const Text("Adicionar Produto")),
+      body: Container(
+        padding: const EdgeInsets.all(30),
+        child: Column(
+          children: [
+            // Campo de entrada para o nome do produto.
+            TextField(
+              controller: produto_nome,
+              decoration: const InputDecoration(hintText: "Nome do produto"),
             ),
-            body:Container( 
-               padding: EdgeInsets.all(30),
-               child: Column(children: [
-                   TextField(
-                     controller: produto_nome,
-                     decoration: const InputDecoration(
-                        hintText: "Nome do produto",
-                     ),
-                   ),
-                       TextField(
-                         controller: produto_codigo,
-                         decoration: const InputDecoration(
-                            hintText: "Código",
-                         ),
-                       ),
-ElevatedButton(onPressed: (){}, child: Icon(Icons.barcode_reader)),
-                   TextField(
-                     controller: produto_valor,
-                     decoration: const InputDecoration(
-                        hintText: "Valor",
-                     ),
-                   ),
+            // Campo de entrada para o código do produto.
+            TextField(
+              controller: produto_codigo,
+              decoration: const InputDecoration(hintText: "Código"),
+            ),
+            // Espaço reservado para um futuro leitor de código de barras.
+            ElevatedButton(
+              onPressed: () {},
+              child: const Icon(Icons.barcode_reader),
+            ),
+            // Campo de entrada para o valor do produto.
+            TextField(
+              controller: produto_valor,
+              decoration: const InputDecoration(hintText: "Valor"),
+            ),
+            // Botão para salvar o produto no banco de dados.
+            ElevatedButton(
+              onPressed: () {
+                // Insere o novo produto com os valores dos campos de texto.
+                bancoSQLite.db.rawInsert(
+                  "INSERT INTO produtos (nome, codigo, valor) VALUES (?, ?, ?);",
+                  [produto_nome.text, produto_codigo.text, produto_valor.text],
+                );
 
-                   ElevatedButton(onPressed: (){
+                // Exibe uma mensagem de confirmação na parte inferior da tela.
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text("Produto Adicionado")),
+                );
 
-                         bancoSQLite.db.rawInsert("INSERT INTO produtos (nome, codigo, valor) VALUES (?, ?, ?);",
-                         [produto_nome.text, produto_codigo.text, produto_valor.text]);
+                // Limpa os campos após salvar para permitir nova entrada.
+                produto_nome.text = "";
+                produto_codigo.text = "";
+                produto_valor.text = "";
 
-                         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Produto Adicionado")));
-
-                         produto_nome.text = "";
-                         produto_codigo.text = "";
-                         produto_valor.text = "";
-
-                         Navigator.pop(context, MaterialPageRoute(builder: (BuildContext context){
-                           return AdicionarProduto();  }));
-
-                   }, child: const Text("Salvar Produto")),
-               ],),
-            )
-       );
+                // Retorna para a tela anterior.
+                Navigator.pop(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return AdicionarProduto();
+                    },
+                  ),
+                );
+              },
+              child: const Text("Salvar Produto"),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

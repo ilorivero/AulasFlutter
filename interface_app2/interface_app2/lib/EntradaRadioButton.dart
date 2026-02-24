@@ -1,75 +1,58 @@
 import 'package:flutter/material.dart';
 
+/// Widget de tela para demonstrar o uso do [RadioListTile].
+///
+/// Exibe uma pesquisa de satisfação com opções de resposta exclusivas
+/// (apenas uma pode ser selecionada por vez — comportamento padrão do RadioButton).
 class EntradaRadioButton extends StatefulWidget {
   @override
   _EntradaRadioButtonState createState() => _EntradaRadioButtonState();
 }
 
+/// Estado associado ao widget [EntradaRadioButton].
 class _EntradaRadioButtonState extends State<EntradaRadioButton> {
-  String _selecionado;
+  /// Variável que armazena o valor do botão de rádio selecionado pelo usuário.
+  /// Inicializada com string vazia para garantir a segurança de nulidade (null safety).
+  String _selecionado = '';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Pesquisa de Satisfação"),
-      ),
+      appBar: AppBar(title: const Text("Pesquisa de Satisfação")),
       body: Container(
         child: Column(
           children: <Widget>[
-            Padding(
-              padding: EdgeInsets.all(16),
-            ),
-            Text("Satisfeito com o produto? "),
-            RadioListTile(
-              title: Text("Sim"),
+            const Padding(padding: EdgeInsets.all(16)),
+            const Text("Satisfeito com o produto? "),
+            // Opção "Sim" — quando selecionada, _selecionado recebe "sim".
+            RadioListTile<String>(
+              title: const Text("Sim"),
               value: "sim",
-              groupValue: _selecionado,
-              onChanged: (String escolha){
+              groupValue: _selecionado, // Controla qual radio está marcado.
+              onChanged: (String? escolha) {
                 setState(() {
-                  _selecionado = escolha;
+                  _selecionado = escolha ?? '';
                 });
               },
             ),
-            RadioListTile(
-              title: Text("Não"),
+            // Opção "Não" — quando selecionada, _selecionado recebe "nao".
+            RadioListTile<String>(
+              title: const Text("Não"),
               value: "nao",
               groupValue: _selecionado,
-              onChanged: (String escolha){
+              onChanged: (String? escolha) {
                 setState(() {
-                  _selecionado = escolha;
+                  _selecionado = escolha ?? '';
                 });
               },
             ),
+            // Botão para confirmar e imprimir a opção selecionada.
             ElevatedButton(
-                child: Text("Salvar"),
-                onPressed: (){
-                  print("Item selecionado: " + _selecionado);
-                }
-                ),
-            /*
-            Text("Masculino"),
-            Radio(
-                value: "m",
-                groupValue: _selecionado,
-                onChanged: (String escolha){
-                  print("Resultado: " + escolha);
-                  setState(() {
-                    _selecionado = escolha;
-                  });
-                }
+              child: const Text("Salvar"),
+              onPressed: () {
+                print("Item selecionado: " + _selecionado);
+              },
             ),
-            Text("Feminino"),
-            Radio(
-                value: "f",
-                groupValue: _selecionado,
-                onChanged: (String escolha){
-                  print("Resultado: " + escolha);
-                  setState(() {
-                    _selecionado = escolha;
-                  });
-                }
-            ),*/
           ],
         ),
       ),

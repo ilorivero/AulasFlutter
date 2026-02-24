@@ -1,16 +1,44 @@
 # banco_dados_app
 
-A new Flutter application.
+Um aplicativo Flutter para demonstrar operações com banco de dados **SQLite** usando o pacote `sqflite`.
 
-## Getting Started
+## 📖 Descrição
 
-This project is a starting point for a Flutter application.
+Este projeto é uma introdução ao armazenamento local de dados relacionais no Flutter. Ele demonstra as quatro operações fundamentais de banco de dados — **CRUD (Create, Read, Update, Delete)** — em uma tabela de usuários.
 
-A few resources to get you started if this is your first Flutter project:
+## 🚀 Funcionalidades
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+- **Criar**: Inserir um novo usuário (nome + idade) no banco local
+- **Listar todos**: Buscar e exibir todos os usuários cadastrados
+- **Listar um**: Buscar um usuário específico pelo `id`
+- **Atualizar**: Modificar o nome e a idade de um usuário pelo `id`
+- **Excluir**: Remover um usuário com base em nome e idade
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 📦 Pacotes Utilizados
+
+| Pacote | Versão | Uso |
+|--------|--------|-----|
+| `sqflite` | ^2.4.0 | Banco de dados SQLite local |
+| `path` | ^1.9.0 | Montar o caminho do arquivo de banco de dados |
+
+## 🏃 Como Executar
+
+```bash
+cd banco_dados_app
+flutter pub get
+flutter run
+```
+
+## 📂 Estrutura
+
+```
+lib/
+└── main.dart   # Tela principal com operações CRUD de usuários
+```
+
+## 📝 Conceitos Demonstrados
+
+- Criação de banco de dados com `openDatabase`
+- Operações SQL com `rawQuery`, `insert`, `update`, `delete`
+- Uso de placeholders (`?`) para evitar SQL Injection
+- Gerenciamento de caminhos com o pacote `path`

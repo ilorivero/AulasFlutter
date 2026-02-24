@@ -1,16 +1,45 @@
 # dados_preferencia_app
 
-A new Flutter application.
+Um aplicativo Flutter para demonstrar persistência de dados simples com **SharedPreferences** (API legada).
 
-## Getting Started
+## 📖 Descrição
 
-This project is a starting point for a Flutter application.
+Este projeto mostra como salvar, recuperar e remover pares chave-valor de forma persistente utilizando o pacote `shared_preferences`. É ideal para armazenar preferências de usuário, configurações simples e pequenas quantidades de dados.
 
-A few resources to get you started if this is your first Flutter project:
+## 🚀 Funcionalidades
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+- **Salvar**: Persiste um texto digitado pelo usuário com a chave `"nome"`
+- **Recuperar**: Lê e exibe o texto salvo anteriormente
+- **Remover**: Apaga o dado associado à chave `"nome"`
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 📦 Pacotes Utilizados
+
+| Pacote | Versão | Uso |
+|--------|--------|-----|
+| `shared_preferences` | ^2.3.0 | Armazenamento de dados simples no dispositivo |
+
+## 🏃 Como Executar
+
+```bash
+cd dados_preferencia_app
+flutter pub get
+flutter run
+```
+
+## 📂 Estrutura
+
+```
+lib/
+├── main.dart   # Ponto de entrada do app
+└── Home.dart   # Tela com operações de SharedPreferences
+```
+
+## 📝 Conceitos Demonstrados
+
+- Uso de `SharedPreferences.getInstance()` (API síncrona com cache)
+- Salvar string com `prefs.setString(chave, valor)`
+- Recuperar string com `prefs.getString(chave)`
+- Remover dado com `prefs.remove(chave)`
+- Atualização de UI com `setState`
+
+> **Nota:** Veja também o projeto [`shared_preferences`](../shared_preferences) que demonstra a API moderna `SharedPreferencesAsync`.
