@@ -26,6 +26,15 @@ Repositório de projetos Flutter desenvolvidos para as aulas de **Programação 
 | [interface_app1](./interface_app1) | Imagens, botões estilizados e textos formatados | `Image.asset`, `ElevatedButton` |
 | [interface_app2](./interface_app2) | Menu unificado com TextField, CheckBox, RadioButton, Slider e Switch | Inputs, `GridView`, `setState` |
 | [interface_app3](./interface_app3) | Navegação entre duas telas com Navigator | `Navigator.push`, `Navigator.pop` |
+| [bottomnavigationbar](./bottomnavigationbar) | Menu inferior com 4 abas (Início, Perfil, Saldo, Mapa) | `BottomNavigationBar` |
+
+### 🎵 Áudio e Vídeo
+
+| Projeto | Descrição | Pacotes |
+|---------|-----------|---------|
+| [executando_sons_app](./executando_sons_app) | Sons de animais reproduzidos ao tocar nas imagens | `audioplayers` |
+| [executando_sons_player_app](./executando_sons_player_app) | Player de música com play, pausa, parar e controle de volume | `audioplayers` |
+| [executando_videos_app](./executando_videos_app) | Reprodução de vídeo local em loop com controle de aspecto | `video_player` |
 
 ---
 
@@ -57,5 +66,8 @@ flutter run
 | Widgets básicos (Text, Button, Image) | `interface_app1` |
 | Widgets de entrada (TextField, CheckBox, Radio, Slider, Switch) | `interface_app2` |
 | Navegação entre telas | `interface_app3` |
+| Menu inferior com abas | `bottomnavigationbar` |
+| Reprodução de áudio local | `executando_sons_app`, `executando_sons_player_app` |
+| Reprodução de vídeo local | `executando_videos_app` |
 | Documentação inline Dart (`///`) | Todos os projetos |
 | Null Safety (Dart 3) | Todos os projetos |
